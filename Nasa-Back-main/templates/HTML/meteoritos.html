@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Impacto - Impacto Estelar</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="{{ url_for('static', filename='JS/map.js') }}"></script>
+
+        
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Impacto Estelar</a>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Inicio</a></li>
+                <li><a href="{{ url_for('simulacion') }}">Simulación</a></li>
+                <li><a href="{{ url_for('meteoritos') }}">Análisis de Impacto</a></li>
+                <li><a href="{{ url_for('fuerntes') }}">Fuentes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <section class="container">
+            <h2>Análisis de Impacto de Meteoritos</h2>
+            <p>Utiliza las herramientas a continuación para explorar los datos de impacto de meteoritos proporcionados por las APIs de la NASA.</p>
+
+            <div class="analysis-grid">
+                <div class="card">
+                    <h3>Simulador de Impacto</h3>
+                    <div id="map"></div>
+                    <form id="impact-form">
+                        <div class="form-group">
+                            <label for="density">Densidad del Proyectil (kg/m³):</label>
+                            <select id="density" name="density">
+                                <option value="1500">Hielo (1500)</option>
+                                <option value="3000" selected>Roca (3000)</option>
+                                <option value="8000">Hierro (8000)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="diameter">Diámetro del Proyectil (m):</label>
+                            <input type="number" id="diameter" name="diameter" value="1000">
+                        </div>
+                        <div class="form-group">
+                            <label for="velocity">Velocidad del Proyectil (km/s):</label>
+                            <input type="number" id="velocity" name="velocity" value="20">
+                        </div>
+                        <div class="form-group">
+                            <label for="angle">Ángulo de Impacto (grados):</label>
+                            <input type="number" id="angle" name="angle" value="45">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Calcular Impacto</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>Características del Meteorito</h3>
+                    <div id="meteorite-features">
+                        <!-- La información de la API se mostrará aquí -->
+                        <ul>
+                            <li><strong>Nombre:</strong> <span id="feat-name">N/A</span></li>
+                            <li><strong>Masa:</strong> <span id="feat-mass">N/A</span></li>
+                            <li><strong>Composición:</strong> <span id="feat-composition">N/A</span></li>
+                            <li><strong>Año de Caída:</strong> <span id="feat-year">N/A</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Consecuencias Ambientales</h3>
+                    <div id="environmental-consequences">
+                        <!-- La información de la API se mostrará aquí -->
+                        <p>Las consecuencias ambientales estimadas para un impacto de esta magnitud incluyen...</p>
+                        <!-- <script>
+                            mas_desasttrosos();
+                        </script> -->
+                        
+                    </div>
+                
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- <script src="{{ url_for('static', filename='peticiones.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='map.js') }}"></script>
+
+
+</body>
+</html>

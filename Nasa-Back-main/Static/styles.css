@@ -1,0 +1,257 @@
+/* --- Estilos Globales --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+a {
+    color: #4dabf7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #8ce99a;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2, h3 {
+    font-weight: 300;
+    color: #ffffff;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; border-bottom: 2px solid #4dabf7; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+h3 { font-size: 1.5rem; color: #4dabf7; }
+
+/* --- Barra de Navegación --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    font-weight: 400;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+
+nav ul li a.active, nav ul li a:hover {
+    border-bottom-color: #4dabf7;
+    color: #fff;
+}
+
+/* --- Página Principal (index.html) --- */
+.carousel-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.carousel-slide {
+    display: flex;
+    width: 800%; /* 100% por cada una de las 8 imágenes */
+    height: 100%;
+    transition: transform 1.5s ease-in-out;
+}
+
+.carousel-slide img {
+    width: 12.5%; /* 100 / 8 */
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.hero h1 {
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 1rem auto 0;
+}
+
+/* --- Contenido de Páginas Secundarias --- */
+.page-content {
+    padding-top: 80px; /* Altura de la barra de navegación */
+}
+
+/* --- Página de Simulación --- */
+.simulation-area {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    border: 1px dashed #444;
+}
+
+/* --- Página de Análisis de Impacto --- */
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+#map {
+    height: 300px;
+    background-color: #333;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid #555;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.form-group input, .form-group button {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #fff;
+}
+
+.form-group button {
+    width: 100%;
+    cursor: pointer;
+    background-color: #4dabf7;
+    border: none;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.form-group button:hover {
+    background-color: #3690d1;
+}
+
+#meteorite-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+#meteorite-features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+}
+
+#meteorite-features li:last-child {
+    border-bottom: none;
+}
+
+/* --- Página de Fuentes --- */
+.sources-list {
+    list-style: none;
+    padding: 0;
+}
+
+.sources-list li {
+    background-color: #2a2a2a;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+/* --- Responsividad --- */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .page-content {
+        padding-top: 150px; /* Mayor espacio para nav expandido */
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; }
+}
