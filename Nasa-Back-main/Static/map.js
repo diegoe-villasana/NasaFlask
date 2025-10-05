@@ -2,13 +2,45 @@ document.addEventListener('DOMContentLoaded', function () {
     // Inicializar el mapa y centrarlo en una vista global
     var map = L.map('map').setView([20, 0], 2);
 
-    // Añadir la capa base de OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // Añadir las capas base: satelital (ESRI) y calles (OpenStreetMap)
+    const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+    });
+
+    const osmStreets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    });
+
+    // Añade la capa satelital por defecto
+    esriSat.addTo(map);
+
+    // Control para alternar entre capas base (ubicado en bottomleft para evitar solapamiento con HUD)
+    L.control.layers({
+        'Satelital': esriSat,
+        'Mapa calles': osmStreets
+    }, null, { position: 'bottomleft' }).addTo(map);
 
     let impactMarker;
     let impactCircle;
+
+    // Expose function to place marker from external scripts (e.g., globe)
+    window.placeImpactFromGlobe = function(lat, lng) {
+        const latlng = L.latLng(lat, lng);
+        // update hidden inputs if present
+        const latInput = document.getElementById('impact-lat');
+        const lngInput = document.getElementById('impact-lng');
+        if (latInput) latInput.value = lat.toFixed(6);
+        if (lngInput) lngInput.value = lng.toFixed(6);
+
+        if (impactMarker) {
+            impactMarker.setLatLng(latlng).update();
+        } else {
+            impactMarker = L.marker(latlng).addTo(map).bindPopup('Punto de impacto seleccionado.');
+        }
+        // open popup and pan map
+        impactMarker.openPopup();
+        map.panTo(latlng);
+    };
 
     // Evento de clic en el mapa para colocar el marcador de impacto
     map.on('click', function(e) {
